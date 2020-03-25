@@ -98,23 +98,23 @@ def upload_file():
         if file and allowed_file(f.filename):
             filename = secure_filename(f.filename)
 
-            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            print(file_path)
+            #file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            #print(file_path)
             file.save(file_path)
             result = predict(file_path)
             print(result)
-            print(file_path)
+            #print(file_path)
             filename = my_random_string(6) + filename
 
-            os.rename(file_path, os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            print("--- %s seconds ---" % str (time.time() - start_time))
+            #os.rename(file_path, os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            #print("--- %s seconds ---" % str (time.time() - start_time))
             data = {}
             data['pred'] = result
             json_data = json.dumps(data)
             return (json_data)
 from flask import send_from_directory
 
-@app.route('/uploads/<filename>')
+'''@app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],
                                filename)
@@ -124,7 +124,7 @@ app.add_url_rule('/uploads/<filename>', 'uploaded_file',
                  build_only=True)
 app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
     '/uploads':  app.config['UPLOAD_FOLDER']
-})
+})'''
 
 if __name__ == "__main__":
     app.debug=True
