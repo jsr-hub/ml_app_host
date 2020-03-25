@@ -127,6 +127,5 @@ app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
 })'''
 
 if __name__ == "__main__":
-    app.debug=True
-    po = int(os.environ.get('PORT', 17995))
-    app.run(host="0.0.0.0", port=po)
+  
+    app.run()
